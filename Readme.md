@@ -19,4 +19,4 @@ A Chrome extension that enhances the Codeforces country rankings page by adding 
 ### Method 1: Developer Mode (Recommended for testing)
 
 1. **Download the extension files**:
-   - Create a new folder called `cf-stats-enhancer
+   - Create a new folder called `cf-stats-enhancer# cf-stats-enhancer

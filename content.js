@@ -150,7 +150,7 @@ class CodeforceStatsEnhancer {
     
     const table = document.querySelector('.datatable');
     if (!table) {
-      console.error('Table .rated-list not found!'); // Debug log
+      console.error('Table . not found!'); // Debug log
       return;
     }
 
@@ -201,7 +201,7 @@ class CodeforceStatsEnhancer {
     if (this.isProcessing) return;
     this.isProcessing = true;
 
-    const table = document.querySelector('.rated-list');
+    const table = document.querySelector('.datatable');
     if (!table) return;
 
     const dataRows = table.querySelectorAll('tr:not(:first-child)');
@@ -254,7 +254,7 @@ class CodeforceStatsEnhancer {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
       
-      const rows = doc.querySelectorAll('.rated-list tr:not(:first-child)');
+      const rows = doc.querySelectorAll('.datatable tr:not(:first-child)');
       let redCoderCount = 0;
       
       for (const row of rows) {
@@ -322,7 +322,7 @@ class CodeforceStatsEnhancer {
   }
 
   sortTable(sortType) {
-    const table = document.querySelector('.rated-list');
+    const table = document.querySelector('.datatable');
     if (!table) return;
 
     const tbody = table.querySelector('tbody') || table;
@@ -393,7 +393,7 @@ window.checkEnhancementStatus = function() {
   console.log('checkEnhancementStatus called'); // Debug log
   const enhanced = document.querySelector('.red-coders-column') !== null;
   const processing = document.querySelector('.loading-spinner') !== null;
-  const countryRows = document.querySelectorAll('.rated-list tr:not(:first-child)').length;
+  const countryRows = document.querySelectorAll('.datatable tr:not(:first-child)').length;
   
   return {
     isEnhanced: enhanced,
