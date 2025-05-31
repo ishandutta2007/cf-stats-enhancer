@@ -148,7 +148,7 @@ class CodeforceStatsEnhancer {
   addNewColumns() {
     console.log('addNewColumns() called'); // Debug log
     
-    const table = document.querySelector('.datatable');
+    const table = document.querySelector('.datatable table');
     if (!table) {
       console.error('Table . not found!'); // Debug log
       return;
@@ -157,7 +157,7 @@ class CodeforceStatsEnhancer {
     console.log('Table found:', table); // Debug log
 
     // Add headers
-    const headerRow = table.querySelector('tr');
+    const headerRow = table.querySelector('thead tr');
     if (headerRow) {
       const redCodersHeader = document.createElement('th');
       redCodersHeader.className = 'red-coders-column';
@@ -182,7 +182,7 @@ class CodeforceStatsEnhancer {
     }
 
     // Add empty cells to data rows
-    const dataRows = table.querySelectorAll('tr:not(:first-child)');
+    const dataRows = table.querySelectorAll('tbody tr');
     dataRows.forEach(row => {
       const redCodersCell = document.createElement('td');
       redCodersCell.className = 'red-coders-data';
@@ -201,10 +201,10 @@ class CodeforceStatsEnhancer {
     if (this.isProcessing) return;
     this.isProcessing = true;
 
-    const table = document.querySelector('.datatable');
+    const table = document.querySelector('.datatable table');
     if (!table) return;
 
-    const dataRows = table.querySelectorAll('tr:not(:first-child)');
+    const dataRows = table.querySelectorAll('tbody tr');
     
     // Process countries in batches to avoid overwhelming the server
     const batchSize = 3;
@@ -257,7 +257,7 @@ class CodeforceStatsEnhancer {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
       
-      const rows = doc.querySelectorAll('.datatable tr:not(:first-child)');
+      const rows = doc.querySelectorAll('.datatable table tbody tr');
       let redCoderCount = 0;
       
       for (const row of rows) {
@@ -325,11 +325,11 @@ class CodeforceStatsEnhancer {
   }
 
   sortTable(sortType) {
-    const table = document.querySelector('.datatable');
+    const table = document.querySelector('.datatable table');
     if (!table) return;
 
     const tbody = table.querySelector('tbody') || table;
-    const rows = Array.from(tbody.querySelectorAll('tr:not(:first-child)'));
+    const rows = Array.from(tbody.querySelectorAll('tr'));
     
     // Toggle sort direction if clicking same column
     if (this.sortState.column === sortType) {
@@ -396,7 +396,7 @@ window.checkEnhancementStatus = function() {
   console.log('checkEnhancementStatus called'); // Debug log
   const enhanced = document.querySelector('.red-coders-column') !== null;
   const processing = document.querySelector('.loading-spinner') !== null;
-  const countryRows = document.querySelectorAll('.datatable tr:not(:first-child)').length;
+  const countryRows = document.querySelectorAll('.datatable table tbody tr').length;
   
   return {
     isEnhanced: enhanced,
