@@ -414,6 +414,7 @@ let globalEnhancer = null;
 
 // Initialize when DOM is ready
 function initializeEnhancer() {
+  console.log("initializeEnhancer", globalEnhancer)
   if (!globalEnhancer) {
     globalEnhancer = new CodeforceStatsEnhancer();
     window.codeforcesEnhancer = globalEnhancer; // Expose globally
