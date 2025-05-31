@@ -120,6 +120,7 @@ const COUNTRY_POPULATIONS = {
   'Turkey': 85,
   'Turkmenistan': 6.1,
   'Türkiye': 85,
+  'Turkiye': 85,
   'Ukraine': 44,
   'United Arab Emirates': 10.5,
   'United Kingdom': 67,
@@ -227,7 +228,7 @@ class CodeforceStatsEnhancer {
     // Process countries in batches to avoid overwhelming the server
     const batchSize = 2;
     // console.log('dataRows:', dataRows);
-    for (let i = 0; i < Math.min(100,dataRows.length); i += batchSize) {
+    for (let i = 0; i < dataRows.length; i += batchSize) {
       const batch = Array.from(dataRows).slice(i, i + batchSize);
       // console.log(i, 'batch:', batch); 
       
@@ -253,11 +254,11 @@ class CodeforceStatsEnhancer {
       console.log("processCountryRow:countryName=", countryName)
       console.log("processCountryRow:countryUrl=", countryUrl)
 
-      // // Check cache first
-      // if (this.redCoderCache.has(countryName)) {
-      //   this.updateRowData(row, countryName, this.redCoderCache.get(countryName));
-      //   return;
-      // }
+      // Check cache first
+      if (this.redCoderCache.has(countryName)) {
+        this.updateRowData(row, countryName, this.redCoderCache.get(countryName));
+        return;
+      }
 
       const redCoderCount = await this.fetchRedCoderCount(countryUrl);
       this.redCoderCache.set(countryName, redCoderCount);
