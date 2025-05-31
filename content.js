@@ -294,7 +294,7 @@ class CodeforceStatsEnhancer {
     }
     
     if (perCapitaCell) {
-      const population = COUNTRY_POPULATIONS[countryName];
+      const population = COUNTRY_POPULATIONS[countryName.replace('%20', ' ')];
       console.log("updateRowData:countryName=", countryName, "population=", population);
       if (population) {
         const perCapita = (redCoderCount / population).toFixed(2);
