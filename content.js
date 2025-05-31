@@ -1,3 +1,8 @@
+// Helper function to generate random integer between 5000 and 10000
+function randomInt(min, ma) {
+  return Math.floor(Math.random() * (ma - min + 1)) + min;
+}
+
 // Country population data (in millions) - 2023 estimates
 const COUNTRY_POPULATIONS = {
   'China': 1412,
@@ -207,8 +212,8 @@ class CodeforceStatsEnhancer {
     const dataRows = table.querySelectorAll('tbody tr');
     
     // Process countries in batches to avoid overwhelming the server
-    const batchSize = 3;
-    console.log('dataRows:', dataRows); 
+    const batchSize = 2;
+    // console.log('dataRows:', dataRows);
     for (let i = 0; i < Math.min(100,dataRows.length); i += batchSize) {
       const batch = Array.from(dataRows).slice(i, i + batchSize);
       // console.log(i, 'batch:', batch); 
@@ -217,7 +222,8 @@ class CodeforceStatsEnhancer {
       
       // Add delay between batches
       if (i + batchSize < dataRows.length) {
-        await this.delay(10000);
+        let r = randomInt(5000, 10000);
+        await this.delay(r);
       }
     }
     
@@ -229,8 +235,9 @@ class CodeforceStatsEnhancer {
       const countryLink = row.querySelector('a[href*="/ratings/country/"]');
       if (!countryLink) return;
 
-      const countryName = countryLink.textContent.trim();
       const countryUrl = countryLink.href;
+      const countryName = countryUrl.split('/').pop();
+      console.log("processCountryRow:countryName=", countryName)
       console.log("processCountryRow:countryUrl=", countryUrl)
 
       // // Check cache first
@@ -288,6 +295,7 @@ class CodeforceStatsEnhancer {
     
     if (perCapitaCell) {
       const population = COUNTRY_POPULATIONS[countryName];
+      console.log("updateRowData:countryName=", countryName, "population=", population);
       if (population) {
         const perCapita = (redCoderCount / population).toFixed(2);
         perCapitaCell.textContent = perCapita;
