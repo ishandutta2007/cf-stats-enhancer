@@ -8,3 +8,6 @@ To generate per capita you can download static population data and hardcode that
 
 Also the table should be sortable by the new two columns just like it is with other existing columns.
 
+
+================
+The tables are sorting all right but numbers in first column of the table which denote the rank should be updated as per the latest sorted order, Can you do that? Here is the updated content.js for you to work on

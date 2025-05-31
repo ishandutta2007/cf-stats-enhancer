@@ -402,6 +402,14 @@ class CodeforceStatsEnhancer {
 
     // Reorder rows in DOM
     rows.forEach(row => tbody.appendChild(row));
+
+    // Update rank numbers
+    rows.forEach((row, index) => {
+      const rankCell = row.querySelector('td:first-child');
+      if (rankCell) {
+        rankCell.textContent = index + 1;
+      }
+    });
   }
 
   delay(ms) {
