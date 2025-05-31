@@ -1,0 +1,10 @@
+Have a look at the ranking table on this page https://codeforces.com/ratings/countries
+
+I want to build a chrome extension which adds two column to this table: `number of coders rated above 2400` and `number of coders rated above 2400 per capita`. 
+
+To get number of number of red coders rated above 2400 you can visit each of the country lists and count the number of coders above 2400 in run time, for example the country url of China looks this https://codeforces.com/ratings/country/China and as you can see there are 185 rows in this list is rated above 2400. Probably you might have to do the same for all counties in run time to get the required data.
+
+To generate per capita you can download static population data and hardcode that as part of the chrome extension. 
+
+Also the table should be sortable by the new two columns just like it is with other existing columns.
+

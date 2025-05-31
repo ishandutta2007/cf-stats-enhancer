@@ -1,0 +1,126 @@
+/* Enhanced table styling */
+.red-coders-column,
+.per-capita-column {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  text-align: center;
+  border-left: 2px solid #e9ecef;
+}
+
+.red-coders-data,
+.per-capita-data {
+  text-align: center;
+  padding: 8px 12px;
+  border-left: 1px solid #e9ecef;
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+}
+
+/* Sortable headers */
+.sortable-header {
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.sortable-header:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  color: #0056b3;
+}
+
+.sort-indicator {
+  font-weight: bold;
+  color: #007bff;
+  margin-left: 4px;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.loading-spinner::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  margin-left: 6px;
+  border: 1px solid #f3f3f3;
+  border-top: 1px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Highlight new columns on hover */
+.red-coders-column:hover,
+.per-capita-column:hover,
+.red-coders-data:hover,
+.per-capita-data:hover {
+  background-color: #fff3cd;
+}
+
+/* Error styling */
+.red-coders-data:contains('Error'),
+.per-capita-data:contains('Error') {
+  color: #dc3545;
+  font-style: italic;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .red-coders-column,
+  .per-capita-column {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+  
+  .red-coders-data,
+  .per-capita-data {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+}
+
+/* Enhanced table borders */
+.rated-list {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.rated-list th,
+.rated-list td {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.rated-list th:last-child,
+.rated-list td:last-child {
+  border-right: 1px solid #dee2e6;
+}
+
+/* Status indicators */
+.status-processing {
+  position: relative;
+}
+
+.status-processing::after {
+  content: '⟳';
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: spin 1s linear infinite;
+  color: #007bff;
+  font-size: 14px;
+}

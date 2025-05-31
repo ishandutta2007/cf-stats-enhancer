@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Codeforces Country Stats Enhancer",
+  "version": "1.0",
+  "description": "Adds red coder statistics to Codeforces country rankings",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://codeforces.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://codeforces.com/ratings/countries*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "CF Stats Enhancer"
+  }
+}
