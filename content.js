@@ -8,6 +8,7 @@ const COUNTRY_POPULATIONS = {
   'Afghanistan': 40,
   'Algeria': 45,
   'Andorra': 0.079,
+  'Angola': 36.7,
   'Antarctica': 0.001,
   'Antigua and Barbuda': 0.093,
   'Argentina': 46,
@@ -15,11 +16,14 @@ const COUNTRY_POPULATIONS = {
   'Australia': 26,
   'Austria': 9.0,
   'Azerbaijan': 10.3,
+  'Bahrain': 0.16,
   'Bangladesh': 167,
   'Belarus': 9.5,
   'Belgium': 11.6,
   'Bolivia': 12,
+  'Botswana': 2.48,
   'Brazil': 216,
+  'British Virgin Islands': 0.039,
   'Bulgaria': 6.9,
   'Cambodia': 17,
   'Canada': 39,
@@ -39,6 +43,7 @@ const COUNTRY_POPULATIONS = {
   'El Salvador': 6.5,
   'Estonia': 1.3,
   'Ethiopia': 128.7,
+  'Falkland Islands': 0.003,
   'Finland': 5.5,
   'France': 68,
   'Georgia': 3.7,
@@ -63,7 +68,9 @@ const COUNTRY_POPULATIONS = {
   'Jordan': 11,
   'Kazakhstan': 19.6,
   'Kenya': 55,
+  'Kiribati': 0.13,
   'Kyrgyzstan': 6.7,
+  'Laos': 7.66,
   'Latvia': 1.9,
   'Lebanon': 5.5,
   'Libya': 6.9,
@@ -96,6 +103,7 @@ const COUNTRY_POPULATIONS = {
   'Poland': 38,
   'Portugal': 10.3,
   'Puerto Rico': 3.2,
+  'Rwanda': 14,
   'Romania': 19,
   'Russia': 144,
   'Samoa': 0.22,
@@ -125,11 +133,13 @@ const COUNTRY_POPULATIONS = {
   'United Arab Emirates': 10.5,
   'United Kingdom': 67,
   'United States': 334,
+  'United States Minor Outlying Islands': 0.0003,
   'Uruguay': 3.4,
   'Uzbekistan': 35,
   'Vatican': 0.0008,
   'Venezuela': 28,
-  'Vietnam': 98
+  'Vietnam': 98,
+  'Wallis and Futuna': 0.011
 };
 
 class CodeforceStatsEnhancer {
@@ -257,6 +267,7 @@ class CodeforceStatsEnhancer {
       // Check cache first
       if (this.redCoderCache.has(countryName)) {
         this.updateRowData(row, countryName, this.redCoderCache.get(countryName));
+        console.log("Loaded from cache", countryName, this.redCoderCache.get(countryName));
         return;
       }
 
