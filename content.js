@@ -209,14 +209,15 @@ class CodeforceStatsEnhancer {
     // Process countries in batches to avoid overwhelming the server
     const batchSize = 3;
     console.log('dataRows:', dataRows); 
-    for (let i = 0; i < dataRows.length; i += batchSize) {
+    for (let i = 0; i < Math.min(100,dataRows.length); i += batchSize) {
       const batch = Array.from(dataRows).slice(i, i + batchSize);
+      // console.log(i, 'batch:', batch); 
       
       await Promise.all(batch.map(row => this.processCountryRow(row)));
       
       // Add delay between batches
       if (i + batchSize < dataRows.length) {
-        await this.delay(1000);
+        await this.delay(10000);
       }
     }
     
@@ -230,12 +231,13 @@ class CodeforceStatsEnhancer {
 
       const countryName = countryLink.textContent.trim();
       const countryUrl = countryLink.href;
+      console.log("processCountryRow:countryUrl=", countryUrl)
 
-      // Check cache first
-      if (this.redCoderCache.has(countryName)) {
-        this.updateRowData(row, countryName, this.redCoderCache.get(countryName));
-        return;
-      }
+      // // Check cache first
+      // if (this.redCoderCache.has(countryName)) {
+      //   this.updateRowData(row, countryName, this.redCoderCache.get(countryName));
+      //   return;
+      // }
 
       const redCoderCount = await this.fetchRedCoderCount(countryUrl);
       this.redCoderCache.set(countryName, redCoderCount);
@@ -249,6 +251,7 @@ class CodeforceStatsEnhancer {
 
   async fetchRedCoderCount(countryUrl) {
     try {
+      console.log("fetchRedCoderCount", countryUrl);
       const response = await fetch(countryUrl);
       const html = await response.text();
       const parser = new DOMParser();
